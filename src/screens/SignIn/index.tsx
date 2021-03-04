@@ -1,21 +1,62 @@
-import React, { useCallback, useRef, useState } from 'react';
-import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import React, { useCallback, useRef } from 'react';
+import {
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
+import * as Yup from 'yup';
 
 import { OutAppHeader } from '../../components';
 import { Button, Input, LinkButton } from '../../elements';
 import { Container } from './styles';
+import getValidationErrors from '../../helpers/getValidationErrors';
 
-const SingIn: React.FC = () => {
+interface SignInFormData {
+  username: string;
+  password: string;
+}
+
+const SignIn: React.FC = () => {
   const navigation = useNavigation();
   const formRef = useRef<FormHandles>(null);
 
   const handleGoToSingUp = useCallback(() => navigation.navigate('SingUp'), []);
 
-  const handleSingIn = useCallback((data: any) => {
-    console.log(data);
+  const handleSignIn = useCallback(async (data: SignInFormData) => {
+    try {
+      formRef.current?.setErrors({});
+
+      const schema = Yup.object().shape({
+        username: Yup.string().required('Nome de usuário(a) é obrigatório'),
+        password: Yup.string().required('Senha é obrigatória'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      // await signIn({
+      //   email: data.email,
+      //   password: data.password,
+      // });
+
+      // history.push('/dashboard');
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err);
+        formRef.current?.setErrors(errors);
+        return;
+      }
+
+      Alert.alert(
+        'Erro na autenticação',
+        'Ocorreu um erro ao fazer login, cheque as credenciais.',
+      );
+    }
   }, []);
 
   const handleSubmit = useCallback(() => {
@@ -35,7 +76,7 @@ const SingIn: React.FC = () => {
         <Container>
           <OutAppHeader title="Faça seu Login" />
 
-          <Form ref={formRef} style={{ width: '100%' }} onSubmit={handleSingIn}>
+          <Form ref={formRef} style={{ width: '100%' }} onSubmit={handleSignIn}>
             <Input
               autoCorrect={false}
               autoCapitalize="none"
@@ -69,4 +110,4 @@ const SingIn: React.FC = () => {
   );
 };
 
-export default SingIn;
+export default SignIn;

@@ -1,27 +1,63 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useRef } from 'react';
 import {
+  Alert,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  TextInput,
 } from 'react-native';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
+import * as Yup from 'yup';
 
 import { OutAppHeader } from '../../components';
 import { Button, Input, LinkButton } from '../../elements';
 import { Container } from './styles';
+import getValidationErrors from '../../helpers/getValidationErrors';
+
+interface SingUpFormData {
+  username: string;
+  password: string;
+}
 
 const SingUp: React.FC = () => {
   const navigation = useNavigation();
 
   const formRef = useRef<FormHandles>(null);
 
-  const handleGoToSingIn = useCallback(() => navigation.goBack(), []);
+  const handleGoToSignIn = useCallback(() => navigation.goBack(), []);
 
-  const handleSingIn = useCallback((data: any) => {
-    console.log(data);
+  const handleSingUp = useCallback(async (data: SingUpFormData) => {
+    try {
+      formRef.current?.setErrors({});
+
+      const schema = Yup.object().shape({
+        username: Yup.string().required('Nome de usuário(a) é obrigatório'),
+        password: Yup.string().required('Senha é obrigatória'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      // await signIn({
+      //   email: data.email,
+      //   password: data.password,
+      // });
+
+      // history.push('/dashboard');
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err);
+        formRef.current?.setErrors(errors);
+        return;
+      }
+
+      Alert.alert(
+        'Erro na criação',
+        'Ocorreu um erro ao criar sua conta, cheque suas informações.',
+      );
+    }
   }, []);
 
   const handleSubmit = useCallback(() => {
@@ -41,7 +77,7 @@ const SingUp: React.FC = () => {
         <Container>
           <OutAppHeader title="Faça seu Cadastro" />
 
-          <Form ref={formRef} style={{ width: '100%' }} onSubmit={handleSingIn}>
+          <Form ref={formRef} style={{ width: '100%' }} onSubmit={handleSingUp}>
             <Input
               autoCorrect={false}
               autoCapitalize="none"
@@ -64,7 +100,7 @@ const SingUp: React.FC = () => {
           <LinkButton
             text="Ir para Login"
             iconName="arrow-left"
-            onPress={handleGoToSingIn}
+            onPress={handleGoToSignIn}
           />
         </Container>
       </ScrollView>
