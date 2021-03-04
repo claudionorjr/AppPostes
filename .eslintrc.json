@@ -30,6 +30,14 @@
     "prettier/prettier": ["error", {
       "endOfLine":"auto"
     }],
+    "arrow-parens": "off",
+    "operator-linebreak":"off",
+    "no-console":"off",
+    "react/jsx-props-no-spreading": "off",
+    "indent":"off",
+    "implicit-arrow-linebreak": "off",
+    "no-nested-ternary":"off",
+    "no-confusing-arrow": "off",
     "object-curly-newline": "off",
     "react/prop-types": "off",
     "import/no-extraneous-dependencies": "off",
@@ -42,8 +50,9 @@
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "react/jsx-one-expression-per-line": "off",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": "off",
     "linebreak-style": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "react/jsx-filename-extension": [
         1,
         {
