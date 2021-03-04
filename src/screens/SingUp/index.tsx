@@ -55,7 +55,7 @@ const SingUp: React.FC = () => {
 
       Alert.alert(
         'Erro na criação',
-        'Ocorreu um erro ao criar sua conta, cheque suas informações.',
+        'Ocorreu um erro ao criar sua conta, cheque seus dados.',
       );
     }
   }, []);

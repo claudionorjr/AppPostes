@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components/native';
 
 interface Props {
   isFocused: boolean;
+  isErrored: boolean;
 }
 
 export const Container = styled.View<Props>`
@@ -15,6 +16,12 @@ export const Container = styled.View<Props>`
   margin-bottom: 8px;
   flex-direction: row;
   align-items: center;
+
+  ${({ isErrored }) =>
+    isErrored &&
+    css`
+      border-color: #c53030;
+    `}
 
   ${({ isFocused }) =>
     isFocused &&

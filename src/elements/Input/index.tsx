@@ -54,7 +54,7 @@ const Input: React.FC<Props> = ({ name, icon, ...rest }) => {
   }, []);
 
   return (
-    <Container isFocused={isFocused}>
+    <Container isFocused={isFocused} isErrored={!!error}>
       <Icon
         name={icon}
         size={20}
