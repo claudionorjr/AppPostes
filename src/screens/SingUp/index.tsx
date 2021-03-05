@@ -14,11 +14,8 @@ import { OutAppHeader } from '../../components';
 import { Button, Input, LinkButton } from '../../elements';
 import { Container } from './styles';
 import getValidationErrors from '../../helpers/getValidationErrors';
-
-interface SingUpFormData {
-  username: string;
-  password: string;
-}
+import { createAccountService } from '../../services';
+import User from '../../@types/User';
 
 const SingUp: React.FC = () => {
   const navigation = useNavigation();
@@ -27,38 +24,43 @@ const SingUp: React.FC = () => {
 
   const handleGoToSignIn = useCallback(() => navigation.goBack(), []);
 
-  const handleSingUp = useCallback(async (data: SingUpFormData) => {
-    try {
-      formRef.current?.setErrors({});
+  const handleSingUp = useCallback(
+    async (data: User) => {
+      try {
+        formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        username: Yup.string().required('Nome de usuário(a) é obrigatório'),
-        password: Yup.string().required('Senha é obrigatória'),
-      });
+        const schema = Yup.object().shape({
+          username: Yup.string().required('Nome de usuário(a) é obrigatório'),
+          password: Yup.string().required('Senha é obrigatória'),
+        });
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-      // await signIn({
-      //   email: data.email,
-      //   password: data.password,
-      // });
+        await createAccountService(data);
 
-      // history.push('/dashboard');
-    } catch (err) {
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErrors(err);
-        formRef.current?.setErrors(errors);
-        return;
+        Alert.alert(
+          'Cadastrado com sucesso!',
+          'Você já pode fazer login na aplicação.',
+        );
+
+        navigation.goBack();
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
+          formRef.current?.setErrors(errors);
+          return;
+        }
+
+        Alert.alert(
+          'Erro na criação',
+          'Ocorreu um erro ao criar sua conta, cheque seus dados.',
+        );
       }
-
-      Alert.alert(
-        'Erro na criação',
-        'Ocorreu um erro ao criar sua conta, cheque seus dados.',
-      );
-    }
-  }, []);
+    },
+    [navigation],
+  );
 
   const handleSubmit = useCallback(() => {
     formRef.current?.submitForm();

@@ -58,7 +58,7 @@ const Input: React.FC<Props> = ({ name, icon, ...rest }) => {
       <Icon
         name={icon}
         size={20}
-        color={isFocused || isFilled ? '#ff9000' : '#666360'}
+        color={isFocused || isFilled ? '#004CFF' : '#666360'}
       />
       <TextInput
         onFocus={handleInputFocus}

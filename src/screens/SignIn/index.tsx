@@ -10,54 +10,51 @@ import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
+import { useAuth } from '../../hooks/auth';
 import { OutAppHeader } from '../../components';
 import { Button, Input, LinkButton } from '../../elements';
 import { Container } from './styles';
 import getValidationErrors from '../../helpers/getValidationErrors';
-
-interface SignInFormData {
-  username: string;
-  password: string;
-}
+import User from '../../@types/User';
 
 const SignIn: React.FC = () => {
+  const { signIn } = useAuth();
   const navigation = useNavigation();
   const formRef = useRef<FormHandles>(null);
 
   const handleGoToSingUp = useCallback(() => navigation.navigate('SingUp'), []);
 
-  const handleSignIn = useCallback(async (data: SignInFormData) => {
-    try {
-      formRef.current?.setErrors({});
+  const handleSignIn = useCallback(
+    async (data: User) => {
+      try {
+        formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        username: Yup.string().required('Nome de usuário(a) é obrigatório'),
-        password: Yup.string().required('Senha é obrigatória'),
-      });
+        const schema = Yup.object().shape({
+          username: Yup.string().required('Nome de usuário(a) é obrigatório'),
+          password: Yup.string().required('Senha é obrigatória'),
+        });
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-      // await signIn({
-      //   email: data.email,
-      //   password: data.password,
-      // });
+        await signIn(data);
 
-      // history.push('/dashboard');
-    } catch (err) {
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErrors(err);
-        formRef.current?.setErrors(errors);
-        return;
+        // history.push('/dashboard');
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
+          formRef.current?.setErrors(errors);
+          return;
+        }
+        Alert.alert(
+          'Erro na autenticação',
+          'Ocorreu um erro ao fazer login, cheque as credenciais.',
+        );
       }
-
-      Alert.alert(
-        'Erro na autenticação',
-        'Ocorreu um erro ao fazer login, cheque as credenciais.',
-      );
-    }
-  }, []);
+    },
+    [signIn],
+  );
 
   const handleSubmit = useCallback(() => {
     formRef.current?.submitForm();

@@ -10,7 +10,7 @@ interface Props extends RectButtonProperties {
 
 const Button: React.FC<Props> = ({ text, ...rest }) => (
   <Container {...rest}>
-    <Typography color="Normal" fontFamily="Medium" size={22} text={text} />
+    <Typography color="White" fontFamily="Medium" size={22} text={text} />
   </Container>
 );
 
