@@ -4,7 +4,7 @@ import { Button } from '../../elements';
 import { useAuth } from '../../hooks/auth';
 
 import { Container, NewPosteContainer } from './styles';
-import Feed from './Feed';
+import FeedUI from './FeedUI';
 
 const Home: React.FC = () => {
   const { username } = useAuth();
@@ -12,7 +12,7 @@ const Home: React.FC = () => {
   return (
     <Container>
       <AppHeader username={username} />
-      <Feed />
+      <FeedUI />
       <NewPosteContainer>
         <Button text="POSTAR" onPress={() => console.log('Novo Poste')} />
       </NewPosteContainer>
