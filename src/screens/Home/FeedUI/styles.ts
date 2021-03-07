@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import Icon from 'react-native-vector-icons/Feather';
 import normalizePixel from '../../../helpers/normalizePixel';
 
 export const Container = styled.View`
@@ -41,3 +42,5 @@ export const IconContainer = styled.View`
   margin-top: 0px;
   margin-bottom: 10px;
 `;
+
+export const ButtonIcon = styled.TouchableOpacity``;

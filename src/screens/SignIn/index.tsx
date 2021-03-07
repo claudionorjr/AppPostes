@@ -23,6 +23,10 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const handleGoToSingUp = useCallback(() => navigation.navigate('SingUp'), []);
+  const handleGoToForgotPassword = useCallback(
+    () => navigation.navigate('ForgotPassword'),
+    [],
+  );
 
   const handleSignIn = useCallback(
     async (data: User) => {
@@ -76,7 +80,7 @@ const SignIn: React.FC = () => {
               autoCorrect={false}
               autoCapitalize="none"
               name="username"
-              icon="mail"
+              icon="user"
               placeholder="Username"
             />
             <Input
@@ -92,7 +96,7 @@ const SignIn: React.FC = () => {
           </Form>
           <LinkButton
             text="Esqueci minha senha"
-            onPress={() => console.log('Esqueci minha senha')}
+            onPress={handleGoToForgotPassword}
           />
           <LinkButton text="Cadastrar" onPress={handleGoToSingUp} />
         </Container>

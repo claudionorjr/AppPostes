@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Modal } from 'react-native';
 
 import { Button, Typography } from '../../../elements';
@@ -9,30 +9,38 @@ import { Container, ContentContainer, CloseBtn } from './styles';
 interface Props {
   isVisible: boolean;
   onClose(): void;
+  onPress(): void;
 }
 
-const AddNewPostModal: React.FC<Props> = ({ isVisible, onClose }) => {
-  const [status, setStatus] = useState<string | number>();
+const AddNewPostModal: React.FC<Props> = ({ isVisible, onClose, onPress }) => {
   const [textChange, setTextChange] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isErrored, setIsErrored] = useState<boolean>(true);
   const { createPost } = usePost();
   const { token } = useAuth();
 
+  useEffect(() => {
+    setIsErrored(false);
+    setIsLoading(true);
+  }, []);
+
   const onCreatePost = useCallback(() => {
-    createPost({ content: textChange, token })
-      .then(response => {
-        setStatus(response);
-        setIsLoading(false);
-      })
-      .catch(err => {
-        console.log('CREATEPOST:', err);
-        setIsLoading(true);
-      });
-    (status == '201' || status == '200') && onClose();
-  }, [token, createPost]);
+    textChange !== ''
+      ? createPost({ content: textChange, token })
+          .then(() => {
+            setIsLoading(false);
+            onPress();
+            onClose();
+          })
+          .catch(err => {
+            console.log('CREATEPOST:', err);
+            setIsLoading(true);
+          })
+      : setIsErrored(true);
+  }, [token, textChange]);
 
   const onChangeText = useCallback((text: string) => {
-    console.log(text);
+    setIsErrored(false);
     setTextChange(text);
   }, []);
 
@@ -48,14 +56,15 @@ const AddNewPostModal: React.FC<Props> = ({ isVisible, onClose }) => {
           <Typography text="x" color="White" fontFamily="Light" size={32} />
         </CloseBtn>
         <ContentContainer
+          isErrored={isErrored}
           placeholder="Digite seu post..."
           placeholderTextColor="#666360"
           multiline
           onChangeText={onChangeText}
         />
         <Button
-          text={isLoading ? 'Postar' : 'Carregando...'}
-          disabled={!isLoading}
+          text={isVisible ? 'Postar' : 'Carregando...'}
+          disabled={!isVisible}
           onPress={onCreatePost}
         />
       </Container>

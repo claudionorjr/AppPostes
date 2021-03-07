@@ -84,7 +84,7 @@ const SingUp: React.FC = () => {
               autoCorrect={false}
               autoCapitalize="none"
               name="username"
-              icon="mail"
+              icon="user"
               placeholder="Username"
             />
             <Input

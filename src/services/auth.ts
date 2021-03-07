@@ -11,4 +11,10 @@ const createAccountService = async (body: User): Promise<string | number> => {
   return response.status;
 };
 
-export { authService, createAccountService };
+const forgotPasswordService = async (username: string): Promise<User> => {
+  const response = await api.get<User>(`/forgot-password/${username}`);
+  console.log(response.data);
+  return response.data;
+};
+
+export { authService, createAccountService, forgotPasswordService };

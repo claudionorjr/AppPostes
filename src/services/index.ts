@@ -1,4 +1,14 @@
-import { authService, createAccountService } from './auth';
+import {
+  authService,
+  createAccountService,
+  forgotPasswordService,
+} from './auth';
 import { postsService, createPostService } from './post';
 
-export { authService, createAccountService, postsService, createPostService };
+export {
+  authService,
+  createAccountService,
+  postsService,
+  createPostService,
+  forgotPasswordService,
+};

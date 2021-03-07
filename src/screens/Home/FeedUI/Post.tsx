@@ -10,6 +10,7 @@ import {
   BottomContainer,
   HeaderContainer,
   IconContainer,
+  ButtonIcon,
 } from './styles';
 import capitalizedString from '../../../helpers/capitalizedString';
 import editTimeToPhrase from '../../../helpers/editTimeToPhrase';
@@ -46,8 +47,12 @@ const Post: React.FC<Props> = ({ post }) => (
     </ContentPostContainer>
     <BottomContainer>
       <IconContainer>
-        <Icon name="heart" size={normalizePixel(28)} color="#fff" />
-        <Icon name="thumbs-up" size={normalizePixel(28)} color="#fff" />
+        <ButtonIcon>
+          <Icon name="heart" size={normalizePixel(28)} color="#fff" />
+        </ButtonIcon>
+        <ButtonIcon>
+          <Icon name="thumbs-up" size={normalizePixel(28)} color="#fff" />
+        </ButtonIcon>
       </IconContainer>
       <Typography
         text={parseQuantityLikesAndLoves(post.loves, 'loves')}

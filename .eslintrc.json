@@ -30,6 +30,7 @@
     "prettier/prettier": ["error", {
       "endOfLine":"auto"
     }],
+    "@typescript-eslint/no-empty-function": "off",
     "eqeqeq":"off",
     "react/no-unused-prop-types": "off",
     "react/no-children-prop": "off",

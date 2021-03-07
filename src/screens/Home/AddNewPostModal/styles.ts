@@ -1,6 +1,10 @@
 import { shade } from 'polished';
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import normalizePixel from '../../../helpers/normalizePixel';
+
+interface ContentContainerProps {
+  isErrored: boolean;
+}
 
 export const Container = styled.View`
   flex: 1;
@@ -14,11 +18,19 @@ export const CloseBtn = styled.TouchableOpacity`
   margin-bottom: 10px;
 `;
 
-export const ContentContainer = styled.TextInput`
+export const ContentContainer = styled.TextInput<ContentContainerProps>`
   flex: 1;
   background-color: ${shade(-0.2, '#31323b')};
   padding: 10px;
   border-radius: ${normalizePixel(10)}px;
+  border-width: 2px;
+  border-color: ${shade(-0.2, '#31323b')};
   color: #fff;
   font-size: 22px;
+
+  ${({ isErrored }) =>
+    isErrored &&
+    css`
+      border-color: #c53030;
+    `}
 `;

@@ -8,7 +8,11 @@ import React, {
 import AsyncStorage from '@react-native-community/async-storage';
 
 import User from '../@types/User';
-import { authService, createAccountService } from '../services';
+import {
+  authService,
+  createAccountService,
+  forgotPasswordService,
+} from '../services';
 
 interface AuthState {
   token: string;
@@ -22,6 +26,7 @@ interface AuthContextData {
   signIn(credentials: User): Promise<void>;
   signOut(): void;
   createAccount(credentials: User): Promise<string | number>;
+  forgotPassword(username: string): Promise<User>;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -65,6 +70,11 @@ const AuthProvider: React.FC = ({ children }) => {
     return response;
   }, []);
 
+  const forgotPassword = useCallback(async (username: string) => {
+    const response = await forgotPasswordService(username);
+    return response;
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
@@ -74,6 +84,7 @@ const AuthProvider: React.FC = ({ children }) => {
         signIn,
         signOut,
         createAccount,
+        forgotPassword,
       }}
     >
       {children}

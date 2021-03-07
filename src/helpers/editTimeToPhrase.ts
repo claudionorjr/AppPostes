@@ -5,31 +5,56 @@ const editTimeToPhrase = (date: Date): string => {
   const newYear = newDate.getFullYear();
   const newHours = newDate.getHours();
   const newMinutes = newDate.getMinutes();
-  // 2020-12-27T18:34:50.597Z
+
   const parsed = String(date).split('T');
   const parsedDate = String(parsed[0]).split('-');
   const parsedDateTimeZone = String(parsed[1]).split('.');
   const parsedDateTime = String(parsedDateTimeZone[0]).split(':');
+  const newTimeZone =
+    Number(parsedDateTime[0]) > 2
+      ? Number(parsedDateTime[0]) - 3
+      : Number(parsedDateTime[0]) === 0
+      ? 21
+      : Number(parsedDateTime[0]) === 1
+      ? 22
+      : Number(parsedDateTime[0]) === 2
+      ? 23
+      : 0;
 
   if (newYear - Number(parsedDate[0]) > 0) {
-    return `Postado à mais de ${newYear - Number(parsedDate[0])} anos`;
+    const monthOrMonths =
+      newYear - Number(parsedDate[0]) === 1 ? ' ano' : ' anos';
+    return `Postado à mais de ${
+      newYear - Number(parsedDate[0])
+    }${monthOrMonths}`;
   }
 
   if (newMonth - Number(parsedDate[1]) > 0) {
-    return `Postado à mais de ${newMonth - Number(parsedDate[1])} meses`;
+    const monthOrMonths =
+      newMonth - Number(parsedDate[1]) === 1 ? ' mês' : ' meses';
+    return `Postado à mais de ${
+      newMonth - Number(parsedDate[1])
+    }${monthOrMonths}`;
   }
 
-  if (newDay - Number(parsedDate[2]) <= 31) {
-    return `Postado à ${newDay - Number(parsedDate[2])} dias`;
+  if (newDay - Number(parsedDate[2]) > 0) {
+    const dayOrDays = newDay - Number(parsedDate[2]) === 1 ? ' dia' : ' dias';
+    return `Postado à ${newDay - Number(parsedDate[2])}${dayOrDays}`;
   }
 
-  if (newHours - Number(parsedDateTime[1]) <= 23) {
-    return `Postado à ${newDay - Number(parsedDateTime[2])} horas`;
+  if (newHours - newTimeZone > 0) {
+    const hourOrHours = newHours - newTimeZone === 1 ? ' hora' : ' horas';
+    return `Postado à ${newHours - newTimeZone}${hourOrHours}`;
   }
 
-  if (newMinutes - Number(parsedDateTime[2]) <= 59) {
-    return `Postado à ${newDay - Number(parsedDateTime[2])} minutos`;
+  if (newMinutes - Number(parsedDateTime[1]) >= 0) {
+    const minuteOrMinutes =
+      newMinutes - Number(parsedDateTime[1]) === 1 ? ' minuto' : ' minutos';
+    return `Postado à ${
+      newMinutes - Number(parsedDateTime[1])
+    }${minuteOrMinutes}`;
   }
+  return '';
 };
 
 export default editTimeToPhrase;

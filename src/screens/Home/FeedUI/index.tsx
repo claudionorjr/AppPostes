@@ -8,7 +8,11 @@ import Post from './Post';
 
 import { Container } from './styles';
 
-const FeedUI: React.FC = () => {
+interface Props {
+  newRequest: boolean;
+}
+
+const FeedUI: React.FC<Props> = ({ newRequest }) => {
   const [posts, setPosts] = useState<TypePost[]>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isSubscribed, setIsSubscribed] = useState<boolean>(true);
@@ -28,7 +32,7 @@ const FeedUI: React.FC = () => {
       });
 
     return () => setIsSubscribed(false);
-  }, [token, getAllPosts]);
+  }, [token, usePost, newRequest]);
 
   const renderRow = useCallback(
     ({ item, index }: { item: TypePost; index: number }) => (
