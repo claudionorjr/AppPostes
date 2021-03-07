@@ -47,10 +47,10 @@ const Post: React.FC<Props> = ({ post }) => (
     </ContentPostContainer>
     <BottomContainer>
       <IconContainer>
-        <ButtonIcon>
+        <ButtonIcon onPress={() => console.log('heart')}>
           <Icon name="heart" size={normalizePixel(28)} color="#fff" />
         </ButtonIcon>
-        <ButtonIcon>
+        <ButtonIcon onPress={() => console.log('like')}>
           <Icon name="thumbs-up" size={normalizePixel(28)} color="#fff" />
         </ButtonIcon>
       </IconContainer>

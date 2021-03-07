@@ -34,7 +34,7 @@ const ForgotPassword: React.FC = () => {
         const schema = Yup.object().shape({
           username: Yup.string().required('Nome de usuário(a) é obrigatório'),
         });
-        console.log('aqui');
+
         await schema.validate(
           { username },
           {
@@ -44,7 +44,6 @@ const ForgotPassword: React.FC = () => {
 
         const response = await forgotPassword(username);
         setPasswordState(response.password);
-        console.log(response.password);
         setIsLoading(false);
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
