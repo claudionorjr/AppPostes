@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import normalizePixel from '../../helpers/normalizePixel';
 
 interface Props {
   textSize: number;
@@ -7,7 +8,7 @@ interface Props {
 }
 
 export const Title = styled.Text<Props>`
-  font-size: ${({ textSize }) => textSize}px;
+  font-size: ${({ textSize }) => normalizePixel(textSize)}px;
   color: ${({ textColor }) =>
     textColor === 'Light'
       ? '#828587'

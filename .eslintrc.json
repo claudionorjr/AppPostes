@@ -30,6 +30,10 @@
     "prettier/prettier": ["error", {
       "endOfLine":"auto"
     }],
+    "eqeqeq":"off",
+    "react/no-unused-prop-types": "off",
+    "react/no-children-prop": "off",
+    "no-unused-expressions":"off",
     "arrow-parens": "off",
     "operator-linebreak":"off",
     "no-console":"off",

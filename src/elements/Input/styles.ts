@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/native';
+import normalizePixel from '../../helpers/normalizePixel';
 
 interface Props {
   isFocused: boolean;
@@ -8,11 +9,11 @@ interface Props {
 export const Container = styled.View<Props>`
   width: 100%;
   height: 50px;
-  padding: 0 16px;
-  background-color: #d6d6d6;
+  padding: 0 ${normalizePixel(16)}px;
+  background-color: #31323b;
   border-width: 2px;
-  border-color: #c4c4c4;
-  border-radius: 10px;
+  border-color: #31323b;
+  border-radius: 25px;
   margin-bottom: 8px;
   flex-direction: row;
   align-items: center;
@@ -26,14 +27,14 @@ export const Container = styled.View<Props>`
   ${({ isFocused }) =>
     isFocused &&
     css`
-      border-color: #004cff;
+      border-color: #d9408a;
     `}
 `;
 
 export const TextInput = styled.TextInput`
   flex: 1;
-  color: #232129;
+  color: #fff;
   font-size: 18px;
   font-family: 'RobotoSlab-Light';
-  margin-left: 10px;
+  margin-left: ${normalizePixel(10)}px;
 `;

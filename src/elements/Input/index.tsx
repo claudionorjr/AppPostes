@@ -1,11 +1,4 @@
-import React, {
-  useEffect,
-  useRef,
-  useImperativeHandle,
-  forwardRef,
-  useState,
-  useCallback,
-} from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { TextInputProps } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { useField } from '@unform/core';
@@ -58,7 +51,7 @@ const Input: React.FC<Props> = ({ name, icon, ...rest }) => {
       <Icon
         name={icon}
         size={20}
-        color={isFocused || isFilled ? '#004CFF' : '#666360'}
+        color={isFocused || isFilled ? '#d9408a' : '#fff'}
       />
       <TextInput
         onFocus={handleInputFocus}

@@ -2,6 +2,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { Typography } from '../../elements';
+import normalizePixel from '../../helpers/normalizePixel';
 import { Container, ContainerIcon, ContainerTitle } from './styled';
 
 interface Props {
@@ -11,16 +12,11 @@ interface Props {
 const OutAppHeader: React.FC<Props> = ({ title }) => (
   <Container>
     <ContainerIcon>
-      <Icon name="feather" size={40} color="#000" />
-      <Typography
-        color="Normal"
-        fontFamily="Medium"
-        size={22}
-        text="AppPostes"
-      />
+      <Icon name="feather" size={normalizePixel(40)} color="#d9408a" />
+      <Typography color="White" fontFamily="Medium" size={22} text="AppPosts" />
     </ContainerIcon>
     <ContainerTitle>
-      <Typography color="Normal" fontFamily="Regular" size={20} text={title} />
+      <Typography color="White" fontFamily="Regular" size={20} text={title} />
     </ContainerTitle>
   </Container>
 );

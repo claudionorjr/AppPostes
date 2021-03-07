@@ -39,8 +39,6 @@ const SignIn: React.FC = () => {
         });
 
         await signIn(data);
-
-        // history.push('/dashboard');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -71,7 +69,7 @@ const SignIn: React.FC = () => {
         contentContainerStyle={{ flex: 1 }}
       >
         <Container>
-          <OutAppHeader title="Faça seu Login" />
+          <OutAppHeader title="Login" />
 
           <Form ref={formRef} style={{ width: '100%' }} onSubmit={handleSignIn}>
             <Input
@@ -94,13 +92,9 @@ const SignIn: React.FC = () => {
           </Form>
           <LinkButton
             text="Esqueci minha senha"
-            onPress={() => console.log('Button Login')}
+            onPress={() => console.log('Esqueci minha senha')}
           />
-          <LinkButton
-            text="Cadastrar"
-            iconName="log-in"
-            onPress={handleGoToSingUp}
-          />
+          <LinkButton text="Cadastrar" onPress={handleGoToSingUp} />
         </Container>
       </ScrollView>
     </KeyboardAvoidingView>

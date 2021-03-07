@@ -77,7 +77,7 @@ const SingUp: React.FC = () => {
         contentContainerStyle={{ flex: 1 }}
       >
         <Container>
-          <OutAppHeader title="Faça seu Cadastro" />
+          <OutAppHeader title="Cadastro" />
 
           <Form ref={formRef} style={{ width: '100%' }} onSubmit={handleSingUp}>
             <Input
@@ -99,11 +99,7 @@ const SingUp: React.FC = () => {
             <Button onPress={handleSubmit} text="Cadastrar" />
           </Form>
 
-          <LinkButton
-            text="Ir para Login"
-            iconName="arrow-left"
-            onPress={handleGoToSignIn}
-          />
+          <LinkButton text="Voltar para Login" onPress={handleGoToSignIn} />
         </Container>
       </ScrollView>
     </KeyboardAvoidingView>

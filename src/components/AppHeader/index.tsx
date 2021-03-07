@@ -3,6 +3,7 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import { Typography } from '../../elements';
 import capitalizedString from '../../helpers/capitalizedString';
+import normalizePixel from '../../helpers/normalizePixel';
 import { useAuth } from '../../hooks/auth';
 import { Container, ContainerLogOut } from './styled';
 
@@ -15,14 +16,14 @@ const AppHeader: React.FC<Props> = ({ username }) => {
   return (
     <Container>
       <ContainerLogOut onPress={signOut}>
-        <Icon name="arrow-left" size={22} color="#828587" />
-        <Typography color="Light" fontFamily="Light" size={18} text="Sair" />
+        <Icon name="arrow-left" size={normalizePixel(15)} color="#828587" />
+        <Typography color="Light" fontFamily="Light" size={15} text="Sair" />
       </ContainerLogOut>
       <Typography
-        color="Normal"
-        fontFamily="Medium"
-        size={22}
-        text={`Olá, ${capitalizedString(`${username}`)}`}
+        color="White"
+        fontFamily="Regular"
+        size={16}
+        text={capitalizedString(username)}
       />
     </Container>
   );

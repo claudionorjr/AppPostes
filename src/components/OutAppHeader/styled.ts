@@ -1,7 +1,8 @@
 import styled from 'styled-components/native';
+import normalizePixel from '../../helpers/normalizePixel';
 
 export const Container = styled.View`
-  padding: 0 30px;
+  padding: 0 ${normalizePixel(30)}px;
   width: 100%;
   align-items: center;
   justify-content: center;
@@ -12,12 +13,12 @@ export const ContainerIcon = styled.View`
   width: 100%;
   align-items: center;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 35px;
 `;
 
 export const ContainerTitle = styled.View`
   width: 100%;
   align-items: center;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 `;

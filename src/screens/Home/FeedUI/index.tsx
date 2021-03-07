@@ -1,140 +1,59 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
-import Feed from '../../../@types/Feed';
+import { Post as TypePost } from '../../../@types/Post';
+import { Loading } from '../../../components';
 import { useAuth } from '../../../hooks/auth';
+import { usePost } from '../../../hooks/post';
 import Post from './Post';
 
 import { Container } from './styles';
 
-const mockList: Feed[] = [
-  {
-    authorId: 0,
-    content: 'string',
-  },
-  {
-    authorId: 1,
-    content: 'string',
-  },
-  {
-    authorId: 2,
-    content: 'string',
-  },
-  {
-    authorId: 3,
-    content: 'string',
-  },
-  {
-    authorId: 4,
-    content: 'string',
-  },
-  {
-    authorId: 5,
-    content: 'string',
-  },
-  {
-    authorId: 5,
-    content: 'string',
-  },
-  {
-    authorId: 7,
-    content: 'string',
-  },
-  {
-    authorId: 8,
-    content: 'string',
-  },
-  {
-    authorId: 9,
-    content: 'string',
-  },
-  {
-    authorId: 10,
-    content: 'string',
-  },
-  {
-    authorId: 11,
-    content: 'string',
-  },
-  {
-    authorId: 12,
-    content: 'string',
-  },
-  {
-    authorId: 13,
-    content: 'string',
-  },
-  {
-    authorId: 14,
-    content: 'string',
-  },
-  {
-    authorId: 15,
-    content: 'string',
-  },
-  {
-    authorId: 16,
-    content: 'string',
-  },
-  {
-    authorId: 17,
-    content: 'string',
-  },
-  {
-    authorId: 18,
-    content: 'string',
-  },
-  {
-    authorId: 19,
-    content: 'string',
-  },
-  {
-    authorId: 20,
-    content: 'string',
-  },
-  {
-    authorId: 21,
-    content: 'string',
-  },
-  {
-    authorId: 22,
-    content: 'string',
-  },
-  {
-    authorId: 23,
-    content: 'string',
-  },
-  {
-    authorId: 24,
-    content: 'string',
-  },
-  {
-    authorId: 25,
-    content: 'string',
-  },
-  {
-    authorId: 26,
-    content: 'string',
-  },
-  {
-    authorId: 27,
-    content: 'string',
-  },
-];
-
 const FeedUI: React.FC = () => {
-  const { username } = useAuth();
+  const [posts, setPosts] = useState<TypePost[]>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isSubscribed, setIsSubscribed] = useState<boolean>(true);
+  const { token } = useAuth();
+  const { getAllPosts } = usePost();
 
-  const renderRow = (post: Feed) => <Post post={post} />;
+  useEffect(() => {
+    setIsSubscribed(true);
+    getAllPosts(token)
+      .then(response => {
+        isSubscribed && setPosts(response);
+        isSubscribed && setIsLoading(false);
+      })
+      .catch(err => {
+        console.log('GETALLPOSTS:', err);
+        setIsLoading(true);
+      });
+
+    return () => setIsSubscribed(false);
+  }, [token, getAllPosts]);
+
+  const renderRow = useCallback(
+    ({ item, index }: { item: TypePost; index: number }) => (
+      <Post post={item} />
+    ),
+    [],
+  );
+
+  const renderFooter = useCallback(() => <Loading />, []);
 
   return (
     <Container>
-      <FlatList
-        data={mockList}
-        keyExtractor={item => `row-${item.authorId}`}
-        renderItem={({ item }) => renderRow(item)}
-      />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <FlatList
+          data={posts}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={item => `row-${item.id}`}
+          renderItem={renderRow}
+          ListFooterComponent={renderFooter}
+        />
+      )}
     </Container>
   );
 };
 
-export default FeedUI;
+export default React.memo(FeedUI);
