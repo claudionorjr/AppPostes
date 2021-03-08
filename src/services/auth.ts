@@ -13,7 +13,6 @@ const createAccountService = async (body: User): Promise<string | number> => {
 
 const forgotPasswordService = async (username: string): Promise<User> => {
   const response = await api.get<User>(`/forgot-password/${username}`);
-  console.log(response.data);
   return response.data;
 };
 

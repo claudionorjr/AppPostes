@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "jest": true
   },
   "extends": [
     "plugin:@typescript-eslint/recommended",
@@ -30,6 +31,9 @@
     "prettier/prettier": ["error", {
       "endOfLine":"auto"
     }],
+    "global-require":"off",
+    "@typescript-eslint/no-var-requires": "off",
+    "import/no-unresolved": "warn",
     "no-plusplus":"off",
     "@typescript-eslint/no-empty-function": "off",
     "eqeqeq":"off",
