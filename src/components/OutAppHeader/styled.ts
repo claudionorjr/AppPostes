@@ -13,12 +13,12 @@ export const ContainerIcon = styled.View`
   width: 100%;
   align-items: center;
   justify-content: center;
-  margin-bottom: 35px;
+  margin-bottom: 45px;
 `;
 
 export const ContainerTitle = styled.View`
   width: 100%;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;

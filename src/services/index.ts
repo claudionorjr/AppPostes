@@ -4,6 +4,7 @@ import {
   forgotPasswordService,
 } from './auth';
 import { postsService, createPostService } from './post';
+import { reactionService } from './reaction';
 
 export {
   authService,
@@ -11,4 +12,5 @@ export {
   postsService,
   createPostService,
   forgotPasswordService,
+  reactionService,
 };

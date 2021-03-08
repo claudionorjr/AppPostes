@@ -88,24 +88,24 @@ const ForgotPassword: React.FC = () => {
               icon="user"
               placeholder="Username"
             />
-            <PasswordContainer>
-              {isLoading === undefined && null}
-              {isLoading && <Loading />}
-              {isLoading === false && (
-                <Typography
-                  color="White"
-                  fontFamily="Regular"
-                  size={20}
-                  text={`Password: ${passwordState}`}
-                />
-              )}
-            </PasswordContainer>
             <Button
               onPress={handleSubmit}
               text="Recuperar"
               disabled={isLoading}
             />
           </Form>
+          <PasswordContainer>
+            {isLoading === undefined && null}
+            {isLoading && <Loading />}
+            {isLoading === false && (
+              <Typography
+                color="White"
+                fontFamily="Regular"
+                size={20}
+                text={`Senha: ${passwordState}`}
+              />
+            )}
+          </PasswordContainer>
           <LinkButton text="Voltar para login" onPress={handleGoToSingIn} />
         </Container>
       </ScrollView>

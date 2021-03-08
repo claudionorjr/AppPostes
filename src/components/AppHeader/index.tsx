@@ -16,13 +16,13 @@ const AppHeader: React.FC<Props> = ({ username }) => {
   return (
     <Container>
       <ContainerLogOut onPress={signOut}>
-        <Icon name="arrow-left" size={normalizePixel(15)} color="#828587" />
-        <Typography color="Light" fontFamily="Light" size={15} text="Sair" />
+        <Icon name="arrow-left" size={normalizePixel(16)} color="#828587" />
+        <Typography color="Light" fontFamily="Light" size={16} text="Sair" />
       </ContainerLogOut>
       <Typography
         color="White"
         fontFamily="Regular"
-        size={16}
+        size={18}
         text={capitalizedString(username)}
       />
     </Container>
