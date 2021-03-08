@@ -1,9 +1,9 @@
 import '@react-native-community/async-storage';
 
 jest.mock('@react-native-community/async-storage', () => ({
-  getItem: async (...args: any) => args,
-  setItem: async (...args: any) => args,
-  removeItem: async (...args: any) => args,
+  getItem: async (...args: any | any[]) => args,
+  setItem: async (...args: any | any[]) => args,
+  removeItem: async (...args: any | any[]) => args,
 }));
 
 jest.mock('@react-navigation/native', () => ({
