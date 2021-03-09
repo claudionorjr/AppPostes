@@ -20,6 +20,7 @@ Testando:
 
 Testando com relatório coverage: 
 `yarn test:coverage`
+
 ***Obs***: Será criado um diretório chamado `coverage`, em `rootDir`.
 ***Obs***: Caso queira ver o relatório em seu browser, acessar `coverage/lcov-report/index.html`.
 
@@ -38,6 +39,7 @@ Testando:
 
 Testando com relatório coverage: 
 `yarn test:coverage`
+
 ***Obs***: Será criado um diretório chamado `coverage`, em `rootDir`.
 ***Obs***: Caso queira ver o relatório em seu browser, acessar `coverage/lcov-report/index.html`.
 
@@ -54,6 +56,7 @@ Testando:
 
 Testando com relatório coverage: 
 `yarn test:coverage`
+
 ***Obs***: Será criado um diretório chamado `coverage`, em `rootDir`.
 ***Obs***: Caso queira ver o relatório em seu browser, acessar `coverage/lcov-report/index.html`.
 
