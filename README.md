@@ -3,7 +3,7 @@
 </h4>
 
 ## Objetivo
-  * Construir uma APP em react native CLI para fazer postagens.
+  * Construir um APP em react native CLI para fazer postagens.
   * O App deve, Autenticar, Criar Conta, Recuperar Senha, Listar Postagens, Criar Postagens, Curtir ou Amar um Post.
 
 ## Utilizando 🛠
