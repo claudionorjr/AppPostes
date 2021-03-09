@@ -76,7 +76,7 @@ describe('SignIn screen', () => {
     fireEvent.press(button);
     mockedPlatform('android');
     await waitFor(() => {
-      expect(mockedNavigate).toBeCalledWith('SingUp');
+      expect(mockedNavigate).toBeCalledWith('SignUp');
     });
   });
 

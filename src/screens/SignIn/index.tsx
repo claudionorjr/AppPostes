@@ -22,7 +22,7 @@ const SignIn: React.FC = () => {
   const navigation = useNavigation();
   const formRef = useRef<FormHandles>(null);
 
-  const handleGoToSingUp = useCallback(() => navigation.navigate('SingUp'), []);
+  const handleGoToSignUp = useCallback(() => navigation.navigate('SignUp'), []);
   const handleGoToForgotPassword = useCallback(
     () => navigation.navigate('ForgotPassword'),
     [],
@@ -98,7 +98,7 @@ const SignIn: React.FC = () => {
             text="Esqueci minha senha"
             onPress={handleGoToForgotPassword}
           />
-          <LinkButton text="Cadastrar" onPress={handleGoToSingUp} />
+          <LinkButton text="Cadastrar" onPress={handleGoToSignUp} />
         </Container>
       </ScrollView>
     </KeyboardAvoidingView>

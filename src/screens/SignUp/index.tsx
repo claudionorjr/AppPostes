@@ -17,7 +17,7 @@ import getValidationErrors from '../../helpers/getValidationErrors';
 import User from '../../@types/User';
 import { useAuth } from '../../hooks/auth';
 
-const SingUp: React.FC = () => {
+const SignUp: React.FC = () => {
   const { createAccount } = useAuth();
   const navigation = useNavigation();
 
@@ -25,7 +25,7 @@ const SingUp: React.FC = () => {
 
   const handleGoToSignIn = useCallback(() => navigation.goBack(), []);
 
-  const handleSingUp = useCallback(
+  const handleSignUp = useCallback(
     async (data: User) => {
       try {
         formRef.current?.setErrors({});
@@ -79,7 +79,7 @@ const SingUp: React.FC = () => {
         <Container>
           <OutAppHeader title="Cadastro" />
 
-          <Form ref={formRef} style={{ width: '100%' }} onSubmit={handleSingUp}>
+          <Form ref={formRef} style={{ width: '100%' }} onSubmit={handleSignUp}>
             <Input
               testID="input-to-test-in-sign-in-tests"
               autoCorrect={false}
@@ -107,4 +107,4 @@ const SingUp: React.FC = () => {
   );
 };
 
-export default SingUp;
+export default SignUp;

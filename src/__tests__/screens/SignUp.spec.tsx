@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from 'react-native-testing-library';
 
-import SingUp from '../../screens/SingUp';
+import SignUp from '../../screens/SignUp';
 import {
   mockedCreateAccount,
   mockedPlatform,
@@ -14,14 +14,14 @@ describe('SignUp screen', () => {
   });
 
   it('Should contain a username/password inputs', () => {
-    const { getByPlaceholder } = render(<SingUp />);
+    const { getByPlaceholder } = render(<SignUp />);
     mockedPlatform('android');
     expect(getByPlaceholder('Username')).toBeTruthy();
     expect(getByPlaceholder('Password')).toBeTruthy();
   });
 
   it('Should be able to create account', async () => {
-    const { getByPlaceholder, getByText } = render(<SingUp />);
+    const { getByPlaceholder, getByText } = render(<SignUp />);
 
     const inputUsername = getByPlaceholder('Username');
     const inputPassword = getByPlaceholder('Password');
@@ -38,7 +38,7 @@ describe('SignUp screen', () => {
   });
 
   it('Should not be able to create account with invalid credencials', async () => {
-    const { getByPlaceholder, getByText } = render(<SingUp />);
+    const { getByPlaceholder, getByText } = render(<SignUp />);
 
     const inputUsername = getByPlaceholder('Username');
     const inputPassword = getByPlaceholder('Password');
@@ -58,7 +58,7 @@ describe('SignUp screen', () => {
     mockedCreateAccount.mockImplementation(() => {
       throw new Error();
     });
-    const { getByPlaceholder, getByText } = render(<SingUp />);
+    const { getByPlaceholder, getByText } = render(<SignUp />);
 
     const inputUsername = getByPlaceholder('Username');
     const inputPassword = getByPlaceholder('Password');
@@ -75,7 +75,7 @@ describe('SignUp screen', () => {
   });
 
   it('Should be able to access SignIn Page', async () => {
-    const { getByText } = render(<SingUp />);
+    const { getByText } = render(<SignUp />);
     const button = getByText('Voltar para Login');
     fireEvent.press(button);
     mockedPlatform('ios');
