@@ -1,15 +1,15 @@
-const editTimeToPhrase = (date: Date): string => {
+const editTimeToPhrase = (str: string): string => {
   const newDate = new Date();
-  const newDay = newDate.getDay();
+  const newDay = newDate.getDate() + 1;
   const newMonth = newDate.getMonth() + 1;
   const newYear = newDate.getFullYear();
   const newHours = newDate.getHours();
   const newMinutes = newDate.getMinutes();
 
-  const parsed = String(date).split('T');
-  const parsedDate = String(parsed[0]).split('-');
-  const parsedDateTimeZone = String(parsed[1]).split('.');
-  const parsedDateTime = String(parsedDateTimeZone[0]).split(':');
+  const parsed = String(str).split('T');
+  const parsedDate = parsed[0].split('-');
+  const parsedDateTimeZone = parsed[1].split('.');
+  const parsedDateTime = parsedDateTimeZone[0].split(':');
   const newTimeZone =
     Number(parsedDateTime[0]) > 2
       ? Number(parsedDateTime[0]) - 3
@@ -37,9 +37,15 @@ const editTimeToPhrase = (date: Date): string => {
     }${monthOrMonths}`;
   }
 
-  if (newDay - Number(parsedDate[2]) > 0) {
-    const dayOrDays = newDay - Number(parsedDate[2]) === 1 ? ' dia' : ' dias';
-    return `Postado à ${newDay - Number(parsedDate[2])}${dayOrDays}`;
+  if (
+    Number(parsedDate[2]) - newDay > 0 ||
+    newDay - Number(parsedDate[2]) > 0
+  ) {
+    const calcSmaller = newDay - Number(parsedDate[2]);
+    const calclarger = Number(parsedDate[2]) - newDay;
+    const resultSum = calcSmaller < 0 ? calclarger : calcSmaller;
+    const dayOrDays = resultSum === 1 ? ' dia' : ' dias';
+    return `Postado à ${resultSum}${dayOrDays}`;
   }
 
   if (newHours - newTimeZone > 0) {

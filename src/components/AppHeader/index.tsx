@@ -9,12 +9,13 @@ import { Container, ContainerLogOut } from './styled';
 
 interface Props {
   username: string;
+  testID?: string;
 }
 
-const AppHeader: React.FC<Props> = ({ username }) => {
+const AppHeader: React.FC<Props> = ({ username, testID }) => {
   const { signOut } = useAuth();
   return (
-    <Container>
+    <Container testID={testID}>
       <ContainerLogOut onPress={signOut}>
         <Icon name="arrow-left" size={normalizePixel(16)} color="#828587" />
         <Typography color="Light" fontFamily="Light" size={16} text="Sair" />

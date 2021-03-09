@@ -31,6 +31,7 @@
     "prettier/prettier": ["error", {
       "endOfLine":"auto"
     }],
+    "arrow-body-style":"off",
     "global-require":"off",
     "@typescript-eslint/no-var-requires": "off",
     "import/no-unresolved": "warn",

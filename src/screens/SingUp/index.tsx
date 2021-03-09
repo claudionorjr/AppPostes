@@ -1,5 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useRef } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {
   Alert,
   KeyboardAvoidingView,
@@ -14,10 +14,11 @@ import { OutAppHeader } from '../../components';
 import { Button, Input, LinkButton } from '../../elements';
 import { Container } from './styles';
 import getValidationErrors from '../../helpers/getValidationErrors';
-import { createAccountService } from '../../services';
 import User from '../../@types/User';
+import { useAuth } from '../../hooks/auth';
 
 const SingUp: React.FC = () => {
+  const { createAccount } = useAuth();
   const navigation = useNavigation();
 
   const formRef = useRef<FormHandles>(null);
@@ -38,7 +39,7 @@ const SingUp: React.FC = () => {
           abortEarly: false,
         });
 
-        await createAccountService(data);
+        await createAccount(data);
 
         Alert.alert(
           'Cadastrado com sucesso!',
@@ -52,14 +53,13 @@ const SingUp: React.FC = () => {
           formRef.current?.setErrors(errors);
           return;
         }
-
         Alert.alert(
           'Erro na criação',
           'Ocorreu um erro ao criar sua conta, cheque seus dados.',
         );
       }
     },
-    [navigation],
+    [navigation, createAccount],
   );
 
   const handleSubmit = useCallback(() => {
@@ -81,6 +81,7 @@ const SingUp: React.FC = () => {
 
           <Form ref={formRef} style={{ width: '100%' }} onSubmit={handleSingUp}>
             <Input
+              testID="input-to-test-in-sign-in-tests"
               autoCorrect={false}
               autoCapitalize="none"
               name="username"

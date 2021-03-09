@@ -52,7 +52,7 @@ const AddNewPostModal: React.FC<Props> = ({ isVisible, onClose, onPress }) => {
       onRequestClose={onClose}
     >
       <Container>
-        <CloseBtn onPress={onClose}>
+        <CloseBtn testID="close-modal" onPress={onClose}>
           <Typography text="x" color="White" fontFamily="Light" size={32} />
         </CloseBtn>
         <ContentContainer
@@ -63,6 +63,7 @@ const AddNewPostModal: React.FC<Props> = ({ isVisible, onClose, onPress }) => {
           onChangeText={onChangeText}
         />
         <Button
+          testID="button-to-create-post"
           text={isVisible ? 'Postar' : 'Carregando...'}
           disabled={!isVisible}
           onPress={onCreatePost}

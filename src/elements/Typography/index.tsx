@@ -6,10 +6,22 @@ interface Props {
   color: 'Normal' | 'Light' | 'White';
   fontFamily: 'Bold' | 'Medium' | 'Regular' | 'Light';
   text: string;
+  testID?: string;
 }
 
-const Typography: React.FC<Props> = ({ size, color, fontFamily, text }) => (
-  <Title textSize={size} textColor={color} textFontFamily={fontFamily}>
+const Typography: React.FC<Props> = ({
+  size,
+  color,
+  fontFamily,
+  text,
+  testID,
+}) => (
+  <Title
+    testID={testID}
+    textSize={size}
+    textColor={color}
+    textFontFamily={fontFamily}
+  >
     {text}
   </Title>
 );

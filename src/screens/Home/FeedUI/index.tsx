@@ -44,7 +44,7 @@ const FeedUI: React.FC<Props> = ({ newRequest }) => {
   const renderFooter = useCallback(() => <Loading />, []);
 
   return (
-    <Container>
+    <Container testID="container-posts-list">
       {isLoading ? (
         <Loading />
       ) : (

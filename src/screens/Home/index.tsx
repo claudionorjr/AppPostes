@@ -25,7 +25,12 @@ const Home: React.FC = () => {
       <AppHeader username={username} />
       <FeedUI newRequest={isNewRequest} />
       <NewPosteContainer>
-        <Button text="" onPress={handleVisible} isAddPost />
+        <Button
+          testID="button-screen-home"
+          text=""
+          onPress={handleVisible}
+          isAddPost
+        />
       </NewPosteContainer>
       <AddNewPostModal
         isVisible={isVisible}

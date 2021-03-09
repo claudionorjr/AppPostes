@@ -36,6 +36,7 @@
     "@babel/core": "^7.8.4",
     "@babel/runtime": "^7.8.4",
     "@testing-library/jest-native": "^4.0.1",
+    "@testing-library/react-hooks": "^5.1.0",
     "@types/axios": "^0.14.0",
     "@types/jest": "^25.2.3",
     "@types/react-native": "^0.63.2",
@@ -48,6 +49,7 @@
     "@types/yup": "^0.29.11",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
+    "axios-mock-adapter": "^1.19.0",
     "babel-jest": "^25.1.0",
     "eslint": "^7.21.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -62,7 +64,7 @@
     "metro-react-native-babel-preset": "^0.59.0",
     "prettier": "^2.2.1",
     "react-native-testing-library": "^6.0.0",
-    "react-test-renderer": "16.13.1",
+    "react-test-renderer": "^17.0.1",
     "typescript": "^3.8.3"
   },
   "resolutions": {
@@ -70,18 +72,22 @@
   },
   "jest": {
     "preset": "react-native",
-    "setupFilesAfterEnv": ["@testing-library/jest-native/extend-expect"],
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-native/extend-expect"
+    ],
     "setupFiles": [
       "./src/__tests__/jestSetupFile.ts",
       "./node_modules/react-native-gesture-handler/jestSetup.js"
     ],
-    "modulePathIgnorePatterns": ["./src/__tests__/jestSetupFile.ts"],
+    "modulePathIgnorePatterns": [
+      "./src/__tests__/jestSetupFile.ts"
+    ],
     "collectCoverageFrom": [
       "src/screens/**/*.tsx",
       "src/components/**/*.tsx",
       "src/elements/**/*.tsx",
       "src/helpers/**/*.ts",
-      "src/hooks/*.tsx",
+      "!src/hooks/*.tsx",
       "!src/hooks/index.tsx"
     ],
     "moduleFileExtensions": [

@@ -16,10 +16,22 @@ interface Props {
   onPress(): void;
   isAddPost?: boolean;
   disabled?: boolean | undefined;
+  testID?: string;
 }
 
-const Button: React.FC<Props> = ({ text, onPress, isAddPost, disabled }) => (
-  <Container isAddPost={isAddPost} onPress={onPress} disabled={disabled}>
+const Button: React.FC<Props> = ({
+  text,
+  onPress,
+  isAddPost,
+  disabled,
+  testID,
+}) => (
+  <Container
+    testID={testID}
+    isAddPost={isAddPost}
+    onPress={onPress}
+    disabled={disabled}
+  >
     {isAddPost ? (
       <ContainerBtnAddPost>
         <LinearGradient

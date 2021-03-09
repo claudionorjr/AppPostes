@@ -99,6 +99,7 @@ const ForgotPassword: React.FC = () => {
             {isLoading && <Loading />}
             {isLoading === false && (
               <Typography
+                testID="password-field"
                 color="White"
                 fontFamily="Regular"
                 size={20}

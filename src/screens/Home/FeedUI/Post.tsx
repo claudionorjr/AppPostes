@@ -110,14 +110,14 @@ const Post: React.FC<Props> = ({ post }) => {
       </ContentPostContainer>
       <BottomContainer>
         <IconContainer>
-          <ButtonIcon onPress={handleToLove}>
+          <ButtonIcon testID="heart-reaction-button" onPress={handleToLove}>
             <Icon
               name="heart"
               size={normalizePixel(28)}
               color={activeUserLovedIt ? '#d9408a' : '#fff'}
             />
           </ButtonIcon>
-          <ButtonIcon onPress={handleToLike}>
+          <ButtonIcon testID="like-reaction-button" onPress={handleToLike}>
             <Icon
               name="thumbs-up"
               size={normalizePixel(28)}
