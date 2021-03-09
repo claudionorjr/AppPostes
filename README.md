@@ -21,8 +21,7 @@ Testando:
 Testando com relatório coverage: 
 `yarn test:coverage`
 
-***Obs***: Será criado um diretório chamado `coverage`, em `rootDir`.
-***Obs***: Caso queira ver o relatório em seu browser, acessar `coverage/lcov-report/index.html`.
+***Obs***: Será criado um diretório chamado `coverage`, em `rootDir`. Caso queira ver o relatório em seu browser, acessar `coverage/lcov-report/index.html`.
 
 ### macOS
 Instalando pacotes: 
@@ -40,8 +39,7 @@ Testando:
 Testando com relatório coverage: 
 `yarn test:coverage`
 
-***Obs***: Será criado um diretório chamado `coverage`, em `rootDir`.
-***Obs***: Caso queira ver o relatório em seu browser, acessar `coverage/lcov-report/index.html`.
+***Obs***: Será criado um diretório chamado `coverage`, em `rootDir`. Caso queira ver o relatório em seu browser, acessar `coverage/lcov-report/index.html`.
 
 
 ### WINDOWNS
@@ -57,8 +55,7 @@ Testando:
 Testando com relatório coverage: 
 `yarn test:coverage`
 
-***Obs***: Será criado um diretório chamado `coverage`, em `rootDir`.
-***Obs***: Caso queira ver o relatório em seu browser, acessar `coverage/lcov-report/index.html`.
+***Obs***: Será criado um diretório chamado `coverage`, em `rootDir`. Caso queira ver o relatório em seu browser, acessar `coverage/lcov-report/index.html`.
 
 
 ## Tecnologias
